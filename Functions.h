@@ -13,33 +13,43 @@ struct Element
     double ch;
     Element* next;
 };
-class UList
+class List
 {
 private:
-    unique_ptr<Element*> begin;
-    unique_ptr<Element*> end;
+    Element* begin;
+    Element* end;
     int count;
 public:
-    UList();
-    UList(vector<double> a);
-    UList(UList& a);
-    UList(UList&& a) noexcept;
-    ~UList();
-    void show();
+    List();
+    List(vector<double> a);
+    List(List&& a) noexcept;
+    List(Element* b);
+    List(const List& a);
+    ~List();
+    void Del(int index);
+    void Del();
+    void Clear();
     double getFirstEl();
     double getLastEl();
     double getNumOfEl();
     double findMax();
     double findMin();
     double findAVG();
-    void bubbleSort();
+    Element* getBegin();
+    Element* getEnd();
+    void show();
     void choiceSort();
+    void bubbleSort();
+    double getElById(int n);
     void skalyar(double a);
-    friend ostream& operator << (ostream& out, UList& a);
+    bool Checker(List& a);
+    List operator+(double b);
+    List operator - ();
+    friend ostream& operator << (ostream& out, List& a);
+    friend istream& operator >> (istream& in, List& a);
     double operator[](int index);
-    friend istream& operator >> (istream& in, UList& a);
-    UList& operator=(UList& b);
-    UList& operator=(UList&& b) noexcept;
-    UList operator - ();
-    UList operator+(double b);
+    List& operator=(const List& b);
+    List& operator=(List&& b) noexcept;
+  
 };
+
